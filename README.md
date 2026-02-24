@@ -1,4 +1,4 @@
-# User Auth Project - Complete Documentation
+# Backend - Complete Documentation 
 
 ## 📋 Table of Contents
 
