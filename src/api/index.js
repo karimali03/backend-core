@@ -10,7 +10,7 @@ const permissionRoutes = require('./permission/permission.route');
 const fileRoutes = require('./file/file.route');
 const processRoutes = require('./process/process.route');
 const chatRoutes = require('./chat/chat.route');
-
+const notificationRoutes = require('./notification/notification.route');
 
 router.use('/auth', authRoutes);
 router.use('/user', userRoutes);
@@ -27,5 +27,8 @@ router.use('/process', processRoutes);
 
 // Chat/AI routes
 router.use('/chat', chatRoutes);
+
+// ALL notification-related routes will be prefixed with /notification
+router.use('/notification', notificationRoutes);
 
 module.exports = router;

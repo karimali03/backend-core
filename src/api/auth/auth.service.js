@@ -45,6 +45,21 @@ class AuthService {
     async verifyEmail(token) {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         await this.userRepository.verifyEmail(decoded.userId);
+
+        // Create notification for successful email verification
+        const user = await this.userRepository.findById(decoded.userId);
+        if (user) {
+            await this.notificationService.createNotification(
+                decoded.userId,
+                'email_verified',
+                {
+                    email: user.email,
+                    verified_at: new Date().toISOString(),
+                    message: 'Your email has been successfully verified!'
+                },
+                { email: 'skipped', push: 'pending', in_app: 'delivered' }
+            );
+        }
     }
 
     /**
